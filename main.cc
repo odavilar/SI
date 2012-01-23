@@ -134,7 +134,7 @@ int main()
 	U->set(UH, NULL, NULL);
 	V->set(VI, NULL, NULL);
 	Z->set(ZO, NULL, NULL);
-	
+
 	AZ->set(AT, A, Z, 75);
 	AT->set(AS, A, T, 118);
 	AS->set(NULL, A, S, 140);
@@ -205,10 +205,12 @@ int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
 		if(N == meta)
 		{
 			cout<<"Llegué a la meta, la ruta está escrita al revés, osea del final al inicio."<<endl;
-			do{
-				cout<<N->name;
-				N = N->padre;
-			}while(N->padre != NULL);
+			if(inicio!=meta){
+				do{
+					cout<<N->name;
+					N = N->padre;
+				}while(N->padre != NULL);
+			}
 			cout<<inicio->name<<endl;
 			return 1;
 		}

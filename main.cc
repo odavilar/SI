@@ -198,9 +198,9 @@ int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
 		remove(N, &A); //borrar N de los abiertos
 		if(N == meta)
 		{
-			cout<<"Llegué a la meta"<<endl;
+			cout<<"Llegué a la meta, la ruta está escrita al revés, osea del final al inicio."<<endl;
 			do{
-				cout<<N->name<<endl;
+				cout<<N->name;
 				N = N->padre;
 			}while(N->padre != NULL);
 			cout<<inicio->name<<endl;
@@ -231,7 +231,10 @@ Nodo* less_A(vector<Nodo*> A)
 	for(it = A.begin(); it < A.end(); it++)
 	{
 		if( (*it)->f <= menor )
+		{
+			menor = (*it)->f;
 			N = (*it);
+		}
 	}
 	return N;
 }

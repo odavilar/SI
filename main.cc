@@ -4,6 +4,8 @@
 
 using namespace std;
 
+int remove(Nodo* N, vector<Nodo*> *list);
+bool is_there(Nodo* N, vector<Nodo*> list);
 Nodo* less_A(vector<Nodo*> A);
 int Buscar_A_Estrella(Nodo* inicio, Nodo* meta);
 
@@ -170,6 +172,21 @@ int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
 	while(!A.empty())
 	{
 		Nodo* N = less_A(A);
+		C.push_back(N);
+		remove(N, &A); //borrar N de los abiertos
+		if(N == meta)
+		{
+			cout<<"Llegué a la meta"<<endl;
+			return 1;
+		}
+		Nodo *temp = N;
+		do{
+			if(!is_there(temp->sig->dest, C)){
+				A.push_back(temp->sig->dest);
+				temp->sig->dest->f = N->g + temp->sig->g + temp->sig->dest->h;
+			}
+			temp = temp->sig;
+		}while(temp->sig != NULL);
 	}
 
 	return 0;
@@ -181,10 +198,34 @@ Nodo* less_A(vector<Nodo*> A)
 	vector<Nodo*>::iterator it;
 	int menor = (A.front())->f;
 
-	for(it = a.begin(); it < A.end(); it++)
+	for(it = A.begin(); it < A.end(); it++)
 	{
 		if( (*it)->f < menor )
 			N = (*it);
 	}
 	return N;
+}
+
+bool is_there(Nodo* N, vector<Nodo*> list)
+{
+	vector<Nodo*>::iterator it;
+	for(it = list.begin(); it < list.end(); it++){
+		if(*it == N)
+			return true;
+	}
+
+	return false;
+}
+
+int remove(Nodo* N, vector<Nodo*> *list)
+{
+	vector<Nodo*>::iterator it;
+	for(it = list->begin(); it < list->end(); it++){
+		if(*it == N)
+		{
+			list->erase(it);
+			return 0;
+		}
+	}
+	return -1;
 }

@@ -4,11 +4,11 @@
 
 using namespace std;
 
+Nodo* less_A(vector<Nodo*> A);
+int Buscar_A_Estrella(Nodo* inicio, Nodo* meta);
+
 int main()
 {	
-	vector<Nodo*> list_A;
-	vector<Nodo*> list_C;
-	
 	/*
 	 * Heurística del nodo a la meta
 	 */
@@ -38,7 +38,7 @@ int main()
 	 * Nodos y relaciones
 	 */
 
-	list_A.push_back(Nodo *A = new Nodo('A', am));
+	Nodo *A = new Nodo('A', am);
 	Nodo *AZ = new Nodo;
 	Nodo *AT = new Nodo;
 	Nodo *AS = new Nodo;
@@ -105,53 +105,86 @@ int main()
 	Nodo *ZO = new Nodo;
 	Nodo *ZA = new Nodo;
 
-	AZ->set(AT, A, Z->h, 75);
-	AT->set(AS, A, T->h, 118);
-	AS->set(NULL, A, S->h, 140);
-	BG->set(BU, B, G->h, 90);
-	BU->set(BP, B, U->h, 85);
-	BP->set(BF, B, P->h, 211);
-	BF->set(NULL, B, F->h, 101);
-	CD->set(CP, C, D->h, 120);
-	CP->set(CR, C, P->h, 146);
-	CR->set(NULL, C, R->h, 138);
-	DM->set(DC, D, M->h, 75);
-	DC->set(NULL, D, C->h, 120);
-	EH->set(NULL, E, H->h, 86);
-	FS->set(FB, F, S->h, 99);
-	FB->set(NULL, F, B->h, 211);
-	GB->set(NULL, G, B->h, 90);
-	HE->set(HU, H, E->h, 86);
-	HU->set(NULL, H, U->h, 98);
-	IN->set(IV, I, N->h, 87);
-	IV->set(NULL, I, V->h, 92);
-	LT->set(LM, L, T->h, 111);
-	LM->set(NULL, L, M->h, 70);
-	ML->set(MD, M, L->h, 70);
-	MD->set(NULL, M, D->h, 75);
-	NI->set(NULL, N, I->h, 87);
-	OZ->set(OS, O, Z->h, 71);
-	OS->set(NULL, O, S->h, 151);
-	PR->set(PC, P, R->h, 97);
-	PC->set(PB, P, C->h, 138);
-	PB->set(NULL, P, B->h, 101);
-	RP->set(RS, R, P->h, 97);
-	RS->set(RC, R, S->h, 80);
-	RC->set(NULL, R, C->h, 146);
-	SF->set(SR, S, F->h, 99);
-	SR->set(SA, S, R->h, 80);
-	SA->set(SO, S, A->h, 140);
-	SO->set(NULL, S, O->h, 151);
-	TL->set(TA, T, L->h, 111);
-	TA->set(NULL, T, A->h, 118);
-	UH->set(UB, U, H->h, 98);
-	UB->set(UV, U, B->h, 85);
-	UV->set(NULL, U, V->h, 142);
-	VI->set(VU, V, I->h, 92);
-	VU->set(NULL, V, U->h, 142);
-	ZO->set(ZA, Z, O->h, 71);
-	ZA->set(NULL, Z, A->h, 75);
+	AZ->set(AT, A, Z, 75);
+	AT->set(AS, A, T, 118);
+	AS->set(NULL, A, S, 140);
+	BG->set(BU, B, G, 90);
+	BU->set(BP, B, U, 85);
+	BP->set(BF, B, P, 211);
+	BF->set(NULL, B, F, 101);
+	CD->set(CP, C, D, 120);
+	CP->set(CR, C, P, 146);
+	CR->set(NULL, C, R, 138);
+	DM->set(DC, D, M, 75);
+	DC->set(NULL, D, C, 120);
+	EH->set(NULL, E, H, 86);
+	FS->set(FB, F, S, 99);
+	FB->set(NULL, F, B, 211);
+	GB->set(NULL, G, B, 90);
+	HE->set(HU, H, E, 86);
+	HU->set(NULL, H, U, 98);
+	IN->set(IV, I, N, 87);
+	IV->set(NULL, I, V, 92);
+	LT->set(LM, L, T, 111);
+	LM->set(NULL, L, M, 70);
+	ML->set(MD, M, L, 70);
+	MD->set(NULL, M, D, 75);
+	NI->set(NULL, N, I, 87);
+	OZ->set(OS, O, Z, 71);
+	OS->set(NULL, O, S, 151);
+	PR->set(PC, P, R, 97);
+	PC->set(PB, P, C, 138);
+	PB->set(NULL, P, B, 101);
+	RP->set(RS, R, P, 97);
+	RS->set(RC, R, S, 80);
+	RC->set(NULL, R, C, 146);
+	SF->set(SR, S, F, 99);
+	SR->set(SA, S, R, 80);
+	SA->set(SO, S, A, 140);
+	SO->set(NULL, S, O, 151);
+	TL->set(TA, T, L, 111);
+	TA->set(NULL, T, A, 118);
+	UH->set(UB, U, H, 98);
+	UB->set(UV, U, B, 85);
+	UV->set(NULL, U, V, 142);
+	VI->set(VU, V, I, 92);
+	VU->set(NULL, V, U, 142);
+	ZO->set(ZA, Z, O, 71);
+	ZA->set(NULL, Z, A, 75);
 
+	Buscar_A_Estrella(A,B);
 
 	return 0;
+}
+
+int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
+{
+	vector<Nodo*> A;
+	vector<Nodo*> C;
+
+	inicio->padre = NULL;
+	inicio->g = 0;
+	inicio->f = inicio->h + inicio->g;
+
+	A.push_back(inicio);
+	while(!A.empty())
+	{
+		Nodo* N = less_A(A);
+	}
+
+	return 0;
+}
+
+Nodo* less_A(vector<Nodo*> A)
+{	
+	Nodo* N;
+	vector<Nodo*>::iterator it;
+	int menor = (A.front())->f;
+
+	for(it = a.begin(); it < A.end(); it++)
+	{
+		if( (*it)->f < menor )
+			N = (*it);
+	}
+	return N;
 }

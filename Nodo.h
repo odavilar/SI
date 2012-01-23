@@ -16,11 +16,13 @@ class Nodo
 		~Nodo();
 		Nodo* sig;
 		Nodo* padre;
+		Nodo* dest;
 		char name;
 		int h;
 		int g;
+		int f;
 		void set(Nodo* sig, Nodo* padre, int g);
-		void set(Nodo* sig, Nodo* padre, int h, int g);
+		void set(Nodo* sig, Nodo* padre, Nodo* dest, int g);
 };
 
 #endif

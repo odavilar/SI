@@ -22,10 +22,10 @@ void Nodo::set(Nodo* sig, Nodo* padre, int g)
 	this->g = g;
 }
 
-void Nodo::set(Nodo* sig, Nodo* padre, int h, int g)
+void Nodo::set(Nodo* sig, Nodo* padre, Nodo* dest, int g)
 {
 	this->sig = sig;
 	this->padre = padre;
-	this->h = h;
+	this->dest = dest;
 	this->g = g;
 }

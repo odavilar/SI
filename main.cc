@@ -31,7 +31,7 @@ int main()
 	int pm = 100;
 	int rm = 193;
 	int sm = 253;
-	int tm = 328;
+	int tm = 329; //En un lado estaba 328 en el otro 329 de la presentación
 	int um = 80;
 	int vm = 199;
 	int zm = 374;
@@ -107,6 +107,28 @@ int main()
 	Nodo *ZO = new Nodo;
 	Nodo *ZA = new Nodo;
 
+
+	A->set(AZ, NULL, NULL);
+	B->set(BG, NULL, NULL);
+	C->set(CD, NULL, NULL);
+	D->set(DM, NULL, NULL);
+	E->set(EH, NULL, NULL);
+	F->set(FS, NULL, NULL);
+	G->set(GB, NULL, NULL);
+	H->set(HE, NULL, NULL);
+	I->set(IN, NULL, NULL);
+	L->set(LT, NULL, NULL);
+	M->set(ML, NULL, NULL);
+	N->set(NI, NULL, NULL);
+	O->set(OZ, NULL, NULL);
+	P->set(PR, NULL, NULL);
+	R->set(RP, NULL, NULL);
+	S->set(SF, NULL, NULL);
+	T->set(TL, NULL, NULL);
+	U->set(UH, NULL, NULL);
+	V->set(VI, NULL, NULL);
+	Z->set(ZO, NULL, NULL);
+	
 	AZ->set(AT, A, Z, 75);
 	AT->set(AS, A, T, 118);
 	AS->set(NULL, A, S, 140);
@@ -167,8 +189,8 @@ int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
 	inicio->padre = NULL;
 	inicio->g = 0;
 	inicio->f = inicio->h + inicio->g;
-
 	A.push_back(inicio);
+
 	while(!A.empty())
 	{
 		Nodo* N = less_A(A);
@@ -177,6 +199,11 @@ int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
 		if(N == meta)
 		{
 			cout<<"Llegué a la meta"<<endl;
+			do{
+				cout<<N->name<<endl;
+				N = N->padre;
+			}while(N->padre != NULL);
+			cout<<inicio->name<<endl;
 			return 1;
 		}
 		Nodo *temp = N;
@@ -184,6 +211,9 @@ int Buscar_A_Estrella(Nodo* inicio, Nodo* meta)
 			if(!is_there(temp->sig->dest, C)){
 				A.push_back(temp->sig->dest);
 				temp->sig->dest->f = N->g + temp->sig->g + temp->sig->dest->h;
+				temp->sig->dest->g = N->g + temp->sig->g;
+				cout<<temp->sig->dest->name<<" "<<temp->sig->dest->f<<" "<<N->g<<endl;
+				temp->sig->dest->padre = temp;
 			}
 			temp = temp->sig;
 		}while(temp->sig != NULL);
@@ -200,7 +230,7 @@ Nodo* less_A(vector<Nodo*> A)
 
 	for(it = A.begin(); it < A.end(); it++)
 	{
-		if( (*it)->f < menor )
+		if( (*it)->f <= menor )
 			N = (*it);
 	}
 	return N;

@@ -12,14 +12,15 @@ class Nodo
 
 	public:
 		Nodo();
-		Nodo(int h);
+		Nodo(char name, int h);
 		~Nodo();
 		Nodo* sig;
-		Nodo* sub;
+		Nodo* padre;
+		char name;
 		int h;
 		int g;
-		void set(Nodo* sig, Nodo* sub, int g);
-		void set(Nodo* sig, Nodo* sub, int h, int g);
+		void set(Nodo* sig, Nodo* padre, int g);
+		void set(Nodo* sig, Nodo* padre, int h, int g);
 };
 
 #endif

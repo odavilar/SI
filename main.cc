@@ -143,8 +143,8 @@ int main()
 	BP->set(BF, B, P, 211);
 	BF->set(NULL, B, F, 101);
 	CD->set(CP, C, D, 120);
-	CP->set(CR, C, P, 146);
-	CR->set(NULL, C, R, 138);
+	CP->set(CR, C, P, 138);
+	CR->set(NULL, C, R, 146);
 	DM->set(DC, D, M, 75);
 	DC->set(NULL, D, C, 120);
 	EH->set(NULL, E, H, 86);

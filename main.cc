@@ -1,3 +1,9 @@
+/*
+ *
+ * Algoritmo de búsqueda A estrella por Oscar Dávila (793523) para la materia de sistemas inteligentes.
+ *
+ */
+
 #include <iostream>
 #include <vector>
 #include "Nodo.h"

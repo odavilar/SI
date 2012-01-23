@@ -6,6 +6,9 @@ using namespace std;
 
 int main()
 {	
+	vector<Nodo*> list_A;
+	vector<Nodo*> list_C;
+	
 	/*
 	 * Heurística del nodo a la meta
 	 */
@@ -35,7 +38,7 @@ int main()
 	 * Nodos y relaciones
 	 */
 
-	Nodo *A = new Nodo('A', am);
+	list_A.push_back(Nodo *A = new Nodo('A', am));
 	Nodo *AZ = new Nodo;
 	Nodo *AT = new Nodo;
 	Nodo *AS = new Nodo;
@@ -149,8 +152,6 @@ int main()
 	ZO->set(ZA, Z, O->h, 71);
 	ZA->set(NULL, Z, A->h, 75);
 
-	vector<Nodo*> list_A;
-	vector<Nodo*> list_C;
 
 	return 0;
 }

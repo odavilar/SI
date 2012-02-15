@@ -70,7 +70,7 @@ static int info[FILAS][COLUMNAS] =
 };
 
 /*
- * Calcular probabilidad individual
+ * Calcula probabilidad individual
  * Probabilidad de A dado B
  */
 float calc_prob_ind(int A, int B, int evidencia);

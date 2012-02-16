@@ -99,7 +99,7 @@ int main()
 
 //	printf("%f %f \n", PBueno, PMalo);
 
-	printf("Este programa predice el humor de una persona al terminar su jornada laboral dependiendo del Clima, la Temperatura y la Cantidad de Trabajo durante el día\n");
+	printf("Este programa predice si se puede jugar o no golf dependiendo de ciertos factores.\n");
 	printf("Clima:\n1) Sol\t\t2) Nublado\t 3)Lluvioso\n");
 	scanf("%d", &clima);
 	printf("Temperatura:\n1) Alta\t\t2) Media\t3) Baja\n");
